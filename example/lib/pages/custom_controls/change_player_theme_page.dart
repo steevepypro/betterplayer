@@ -101,8 +101,7 @@ class _ChangePlayerThemePageState extends State<ChangePlayerThemePage> {
                       _betterPlayerController = new BetterPlayerController(
                         BetterPlayerConfiguration(
                           autoDispose: true,
-                          controlsConfiguration:
-                              BetterPlayerControlsConfiguration(
+                          controlsConfiguration: BetterPlayerControlsConfiguration(
                             playerTheme: _playerTheme,
                             customControlsBuilder: (controller) =>
                                 CustomControlsWidget(

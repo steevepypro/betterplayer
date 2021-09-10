@@ -10,8 +10,7 @@ class PlaylistPage extends StatefulWidget {
 }
 
 class _PlaylistPageState extends State<PlaylistPage> {
-  final GlobalKey<BetterPlayerPlaylistState> _betterPlayerPlaylistStateKey =
-      GlobalKey();
+  final GlobalKey<BetterPlayerPlaylistState> _betterPlayerPlaylistStateKey= GlobalKey();
   List<BetterPlayerDataSource> _dataSourceList = [];
   late BetterPlayerConfiguration _betterPlayerConfiguration;
   late BetterPlayerPlaylistConfiguration _betterPlayerPlaylistConfiguration;
@@ -81,12 +80,12 @@ class _PlaylistPageState extends State<PlaylistPage> {
             return Text("Building!");
           } else {
             return ListView(children: [
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Text(
-                    "Playlist widget will load automatically next video once current "
-                    "finishes. User can't use player controls when video is changing."),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.all(8),
+              //   child: Text(
+              //       "Playlist widget will load automatically next video once current "
+              //       "finishes. User can't use player controls when video is changing."),
+              // ),
               AspectRatio(
                 child: BetterPlayerPlaylist(
                   key: _betterPlayerPlaylistStateKey,
@@ -147,7 +146,5 @@ class _PlaylistPageState extends State<PlaylistPage> {
     );
   }
 
-  BetterPlayerPlaylistController? get _betterPlayerPlaylistController =>
-      _betterPlayerPlaylistStateKey
-          .currentState!.betterPlayerPlaylistController;
+  BetterPlayerPlaylistController? get _betterPlayerPlaylistController => _betterPlayerPlaylistStateKey.currentState!.betterPlayerPlaylistController;
 }

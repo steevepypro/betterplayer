@@ -12,8 +12,7 @@ class EventListenerPage extends StatefulWidget {
 class _EventListenerPageState extends State<EventListenerPage> {
   late BetterPlayerController _betterPlayerController;
   List<BetterPlayerEvent> events = [];
-  StreamController<DateTime> _eventStreamController =
-      StreamController.broadcast();
+  StreamController<DateTime> _eventStreamController = StreamController.broadcast();
 
   @override
   void initState() {
@@ -42,6 +41,11 @@ class _EventListenerPageState extends State<EventListenerPage> {
 
     ///Used to refresh only list of events
     _eventStreamController.add(DateTime.now());
+
+    if(event.betterPlayerEventType == BetterPlayerEventType.finished){
+      print('Video finalizado iniciar nuevo=-============= ');
+    }
+
   }
 
   @override
@@ -79,6 +83,8 @@ class _EventListenerPageState extends State<EventListenerPage> {
                           children: [
                             Text("Event: ${event.betterPlayerEventType} "
                                 "parameters: ${(event.parameters ?? <String, dynamic>{}).toString()}"),
+                            // Text("Event: ${event.betterPlayerEventType} "
+                            //     "parameters: ${(event.parameters ?? <String, dynamic>{}).toString()}"),
                             Divider(),
                           ],
                         ),

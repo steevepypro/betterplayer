@@ -736,7 +736,8 @@ class _BetterPlayerMaterialControlsState
                 backgroundColor:
                     _controlsConfiguration.progressBarBackgroundColor),
           ),
-        ));
+        )
+      );
   }
 
   void _onPlayerHide() {
