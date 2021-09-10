@@ -5,6 +5,7 @@ import 'dart:math';
 
 // Flutter imports:
 import 'package:better_player/src/configuration/better_player_controller_event.dart';
+import 'package:better_player/src/controls/beplayer_controls.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -175,12 +176,12 @@ class _BetterPlayerWithControlsState extends State<BetterPlayerWithControls> {
         }
       }
 
-      if (controlsConfiguration.customControlsBuilder != null &&
-          playerTheme == BetterPlayerTheme.custom) {
-        return controlsConfiguration
-            .customControlsBuilder!(betterPlayerController);
+      if (controlsConfiguration.customControlsBuilder != null && playerTheme == BetterPlayerTheme.custom) {
+        return controlsConfiguration.customControlsBuilder!(betterPlayerController);
       } else if (playerTheme == BetterPlayerTheme.material) {
         return _buildMaterialControl();
+      } else if (playerTheme == BetterPlayerTheme.beplayer) {
+        return _buildBeplayerControl();
       } else if (playerTheme == BetterPlayerTheme.cupertino) {
         return _buildCupertinoControl();
       }
@@ -191,6 +192,13 @@ class _BetterPlayerWithControlsState extends State<BetterPlayerWithControls> {
 
   Widget _buildMaterialControl() {
     return BetterPlayerMaterialControls(
+      onControlsVisibilityChanged: onControlsVisibilityChanged,
+      controlsConfiguration: controlsConfiguration,
+    );
+  }
+
+  Widget _buildBeplayerControl() {
+    return BeplayerControls(
       onControlsVisibilityChanged: onControlsVisibilityChanged,
       controlsConfiguration: controlsConfiguration,
     );
