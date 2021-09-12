@@ -5,7 +5,7 @@ import 'dart:math';
 
 // Flutter imports:
 import 'package:better_player/src/configuration/better_player_controller_event.dart';
-import 'package:better_player/src/controls/beplayer_controls.dart';
+import 'package:better_player/src/controls/beplayer/beplayer_controls.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:

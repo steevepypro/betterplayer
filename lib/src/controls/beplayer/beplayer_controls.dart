@@ -3,7 +3,7 @@ import 'dart:async';
 
 // Project imports:
 import 'package:better_player/src/configuration/better_player_controls_configuration.dart';
-import 'package:better_player/src/controls/beplayer_material_progress_bar.dart';
+import 'package:better_player/src/controls/beplayer/beplayer_material_progress_bar.dart';
 import 'package:better_player/src/controls/better_player_clickable_widget.dart';
 import 'package:better_player/src/controls/better_player_controls_state.dart';
 import 'package:better_player/src/controls/better_player_multiple_gesture_detector.dart';
@@ -289,13 +289,13 @@ class _BeplayerControlsState
       duration: _controlsConfiguration.controlsHideTime,
       onEnd: _onPlayerHide,
       child: Container(
-        // height: _controlsConfiguration.controlBarHeight + 20.0,
-        height: 40,
+        // height: _controlsConfiguration.controlBarHeight,
+        height: _betterPlayerController!.isFullScreen ? 70 : 40,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Expanded(
-              flex: 350,
+              flex: _betterPlayerController!.isFullScreen ? 75 : 350,
               child: Row(
                 children: [
                   if (_betterPlayerController!.isLiveStream())
@@ -449,14 +449,14 @@ class _BeplayerControlsState
       icon: isFinished
           ? Icon(
               Icons.replay,
-              size: 42,
+              size: 55,
               color: _controlsConfiguration.iconsColor,
             )
           : Icon(
               controller.value.isPlaying
                   ? _controlsConfiguration.pauseIcon
                   : _controlsConfiguration.playIcon,
-              size: 42,
+              size: 55,
               color: _controlsConfiguration.iconsColor,
             ),
       onClicked: () {
@@ -697,7 +697,7 @@ class _BeplayerControlsState
         flex: 40,
         child: Container(
           alignment: Alignment.bottomCenter,
-          padding: const EdgeInsets.symmetric(horizontal: 0),
+          padding: _betterPlayerController!.isFullScreen ? const EdgeInsets.symmetric(horizontal: 23) : const EdgeInsets.symmetric(horizontal: 0),
           child: BplayerVideoProgressBar(
             _controller,
             _betterPlayerController,
@@ -709,9 +709,7 @@ class _BeplayerControlsState
             },
             colors: BetterPlayerProgressColors(
               playedColor: Theme.of(context).primaryColor,
-              // playedColor: _controlsConfiguration.progressBarPlayedColor,
-              // handleColor: _controlsConfiguration.progressBarHandleColor,
-              handleColor: Theme.of(context).primaryColor,
+              handleColor: _controlsConfiguration.progressBarHandleColor,
               bufferedColor: _controlsConfiguration.progressBarBufferedColor,
               backgroundColor: _controlsConfiguration.progressBarBackgroundColor
             ),
